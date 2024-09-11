@@ -1,0 +1,23 @@
+XLSTM based Point Cloud Completion Network
+
+Requirements:
+    - CUDA toolkit 12+ in PATH
+    - CUDA 12+ compatible GPU drivers
+    - Conda in PATH
+    - MVP dataset (as .h5 files in data/) found in https://mvp-dataset.github.io/MVP/Completion.html
+
+The file structure is as follows
+    - `dataset.py` contains classes which load the MVP dataset
+    - `Models.py` where the core XLSTM based models are used to learn the encoding for the decoder network.
+        - 2 encoders are made but the ModelEncoder2 shows slow convergence.
+        - XL_Encoder is the active encoder imported in the main file with 2 XLSTM layers consisting of 3 mLSTM layers and 1 sLSTM layer at index 2 
+    - `test_xlstm.py` in the main file in the directory which needs to be run.
+    - Output models will be saved every epoch and also when the network encounters NAN multiple times
+ 
+To run
+Ensure requirements are satisfied
+`conda install --file env.yaml`
+`conda activate xlstm`
+`python test_xlstm.py`
+
+
